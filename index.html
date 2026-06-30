@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniplayer TV Online</title>
+
+<style>
+:root{
+  --orange:#ff7a00;
+  --bg:#0b0b0b;
+  --card:#1b1b1b;
+}
+
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:var(--bg);
+  color:#fff;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 22px;
+  background:rgba(0,0,0,0.85);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  color:var(--orange);
+  font-weight:bold;
+}
+
+/* BOTÕES */
+.btn{
+  background:linear-gradient(135deg,#ff7a00,#ff9a3c);
+  color:#000;
+  padding:10px 16px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:bold;
+  box-shadow:0 0 15px rgba(255,122,0,0.4);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  height:75vh;
+  overflow:hidden;
+  display:flex;
+  align-items:flex-end;
+  padding:40px 25px;
+}
+
+.slider{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  animation:slide 25s infinite linear;
+}
+
+.slide{
+  min-width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(0.55);
+}
+
+@keyframes slide{
+  0%{transform:translateX(0)}
+  20%{transform:translateX(-100%)}
+  40%{transform:translateX(-200%)}
+  60%{transform:translateX(-300%)}
+  80%{transform:translateX(-400%)}
+  100%{transform:translateX(0)}
+}
+
+.heroContent{
+  position:relative;
+  z-index:2;
+}
+
+.hero h1{
+  font-size:42px;
+  color:var(--orange);
+  margin:0;
+}
+
+.hero p{
+  color:#ddd;
+  max-width:520px;
+}
+
+/* TESTE */
+.test{
+  background:linear-gradient(135deg,#ff7a00,#ff3c3c);
+  padding:10px;
+  text-align:center;
+  font-weight:bold;
+  animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+  0%{opacity:1}
+  50%{opacity:.5}
+  100%{opacity:1}
+}
+
+/* SEÇÕES */
+.section{
+  padding:30px 22px;
+}
+
+.title{
+  color:var(--orange);
+  font-size:18px;
+  margin-bottom:12px;
+}
+
+.row{
+  display:flex;
+  overflow-x:auto;
+  gap:12px;
+}
+
+.card{
+  min-width:180px;
+  height:110px;
+  background:var(--card);
+  border-radius:12px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  border:1px solid #2a2a2a;
+  padding:10px;
+}
+
+.icon{font-size:22px;margin-bottom:6px;}
+.kids{color:#00d4ff;font-size:12px;margin-top:4px;font-weight:bold;}
+
+/* CANAIS */
+.channelWrapper{overflow:hidden;width:100%;}
+.channelTrack{
+  display:flex;
+  width:max-content;
+  gap:12px;
+  animation:scrollChannels 18s linear infinite;
+}
+.channel{
+  min-width:200px;
+  background:#1b1b1b;
+  border:1px solid #333;
+  padding:14px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:bold;
+  white-space:nowrap;
+}
+@keyframes scrollChannels{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* PLANOS */
+.planWrapper{overflow:hidden;width:100%;}
+.planTrack{
+  display:flex;
+  gap:18px;
+  width:max-content;
+  animation:scrollPlans 20s linear infinite;
+  padding:10px 0;
+}
+
+.plan{
+  min-width:260px;
+  padding:25px;
+  border-radius:18px;
+  background:#1b1b1b;
+  border:1px solid #333;
+  text-align:center;
+}
+
+.price{
+  font-size:26px;
+  color:#ff7a00;
+  margin:10px 0;
+  font-weight:bold;
+}
+
+.highlight{
+  border:2px solid #ff7a00;
+  transform:scale(1.1);
+  box-shadow:0 0 25px rgba(255,122,0,0.6);
+  background:linear-gradient(145deg,#1b1b1b,#2a1a10);
+}
+
+@keyframes scrollPlans{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+
+/* BIG CARDS */
+.bigCard{
+  background:var(--card);
+  border:1px solid #2a2a2a;
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:12px;
+}
+
+/* WHATSAPP FLUTUANTE */
+.whatsapp{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  background:var(--orange);
+  color:#000;
+  padding:14px;
+  border-radius:50px;
+  font-weight:bold;
+  text-decoration:none;
+  box-shadow:0 0 20px rgba(255,122,0,0.4);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="logo">UNIPLAYER TV ONLINE</div>
+
+  <a class="btn" href="#" onclick="openWhatsApp()">
+    <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" width="18">
+    Falar no WhatsApp
+  </a>
+</header>
+
+<div class="hero">
+  <div class="slider">
+    <div class="slide" style="background-image:url('https://image.tmdb.org/t/p/original/8UlWHLMpgZm9bx6QYh0NFoq67TZ.jpg')"></div>
+    <div class="slide" style="background-image:url('https://image.tmdb.org/t/p/original/1Rr5SrvHxMXHu5RjKpaMba8VTzi.jpg')"></div>
+    <div class="slide" style="background-image:url('https://image.tmdb.org/t/p/original/9Gtg2DzBhmYamXBS1hKAhiwbBKS.jpg')"></div>
+  </div>
+
+  <div class="heroContent">
+    <h1>Tudo em um só lugar</h1>
+    <p>Filmes, séries, infantil e canais ao vivo.</p>
+
+    <a class="btn" href="#" onclick="openWhatsApp()">
+      <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" width="18">
+      Quero meu acesso
+    </a>
+  </div>
+</div>
+
+<div class="test">🔥 TESTE GRÁTIS DE 6 HORAS DISPONÍVEL</div>
+
+<div class="section">
+  <div class="title">Biblioteca</div>
+  <div class="row">
+    <div class="card"><div class="icon">🔥</div>25.000+</div>
+    <div class="card"><div class="icon">🎬</div>20.000+</div>
+    <div class="card"><div class="icon">📡</div>1.500+</div>
+    <div class="card"><div class="icon">🧸</div>Infantil</div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="title">Canais ao Vivo</div>
+  <div class="channelWrapper">
+    <div class="channelTrack">
+      <div class="channel">⚽ Esportes</div>
+      <div class="channel">🎬 Filmes</div>
+      <div class="channel">📺 Séries</div>
+      <div class="channel">🧸 Infantil</div>
+      <div class="channel">🔥 Estreias</div>
+      <div class="channel">🌍 Entretenimento</div>
+      <div class="channel">⚽ Esportes</div>
+      <div class="channel">🎬 Filmes</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="title">Planos</div>
+  <div class="planWrapper">
+    <div class="planTrack">
+
+      <div class="plan highlight" onclick="openWhatsApp('essencial')">
+        <b>Essencial</b>
+        <div class="price">R$ 19,90</div>
+        1 dispositivo
+      </div>
+
+      <div class="plan" onclick="openWhatsApp('familia')">
+        <b>Família</b>
+        <div class="price">R$ 29,90</div>
+        2 dispositivos
+      </div>
+
+      <div class="plan" onclick="openWhatsApp('premium')">
+        <b>Premium</b>
+        <div class="price">R$ 39,90</div>
+        3 dispositivos
+      </div>
+
+      <div class="plan" onclick="openWhatsApp('ultimate')">
+        <b>Ultimate</b>
+        <div class="price">R$ 49,90</div>
+        4 dispositivos
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="title">Por que escolher a Uniplayer TV Online?</div>
+
+  <div class="bigCard">⚡ Rápido e estável</div>
+  <div class="bigCard">🎬 Conteúdo completo</div>
+  <div class="bigCard">🧸 Infantil incluso</div>
+  <div class="bigCard">📱 Funciona em qualquer dispositivo</div>
+  <div class="bigCard">💬 Suporte rápido no WhatsApp</div>
+</div>
+
+<a class="whatsapp" href="#" onclick="openWhatsApp()">
+  <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" width="22">
+</a>
+
+<script>
+const phone = "5555991268513";
+
+function openWhatsApp(plan){
+  let msg = "Olá! Quero mais informações.";
+
+  if(plan==="essencial") msg="Olá! Quero o plano Essencial (R$19,90).";
+  if(plan==="familia") msg="Olá! Quero o plano Família.";
+  if(plan==="premium") msg="Olá! Quero o plano Premium.";
+  if(plan==="ultimate") msg="Olá! Quero o plano Ultimate.";
+
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(msg)}`,"_blank");
+}
+</script>
+
+</body>
+</html>
